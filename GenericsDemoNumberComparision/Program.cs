@@ -1,10 +1,9 @@
-﻿using System;
-using System.Data;
-using System.Reflection.Metadata.Ecma335;
+﻿using System.Collections.Generic;
+using System;
 
 namespace GenericsDemoNumberComparision
 {
-    class Program
+   public class Program 
     {
         static void Main(string[] args)
         {
@@ -15,38 +14,47 @@ namespace GenericsDemoNumberComparision
             int firstInt = Convert.ToInt32(Console.ReadLine());
             int secondInt= Convert.ToInt32(Console.ReadLine());
             int thirdInt = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("max of three numbers is : " + getMaximum(firstInt,secondInt,thirdInt));
+
+
+            maxGeneric<int> intObj = new maxGeneric<int>(firstInt,secondInt,thirdInt);
+
+            Console.WriteLine("max of three numbers is : " + intObj.getMaximum());
 
             Console.WriteLine("Enter three FLoat values");
             double firstDouble = Convert.ToDouble(Console.ReadLine());
             double secondDouble = Convert.ToDouble(Console.ReadLine());
             double thirdDouble = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("max of three numbers is : " + getMaximum(firstDouble,secondDouble,thirdDouble));
+
+            maxGeneric<double> doubleObj = new maxGeneric<double>(firstDouble, secondDouble, thirdDouble);
+            Console.WriteLine("max of three numbers is : " + doubleObj.getMaximum());
 
 
             Console.WriteLine("Enter three strings");
             string firstString = Console.ReadLine();
             string secondString = Console.ReadLine();
             string thirdString = Console.ReadLine();
-            Console.WriteLine("Max of three strings is : " + getMaximum(firstString,secondString,thirdString));
+            maxGeneric<string> stringObj = new maxGeneric<string>(firstString, secondString, thirdString);
+            Console.WriteLine("Max of three strings is : " + stringObj.getMaximum());
 
 
         }
-        private static int getMaximum(int a, int b, int c)
+
+        public class maxGeneric<myData> where myData : IComparable
         {
-            return a.CompareTo(b) >= 0 && a.CompareTo(c) >= 0 ? a : b.CompareTo(a) >= 0 && b.CompareTo(c) >= 0 ? b : c;
+           public  myData a,b,c;
+            public maxGeneric(myData a, myData b, myData c)
+                {
+                this.a=a;
+                this.b=b;
+                this.c=c;
+                }
+            public  myData getMaximum()
+            {
+                return a.CompareTo(b) >= 0 && a.CompareTo(c) >= 0 ? a : b.CompareTo(a) >= 0 && b.CompareTo(c) >= 0 ? b : c;
 
+            }
         }
-        private static double getMaximum(double a, double b, double c)
-        {
-            return a.CompareTo(b) >= 0 && a.CompareTo(c) >= 0 ? a : b.CompareTo(a) >= 0 && b.CompareTo(c) >= 0 ? b : c;
-
-        }
-
-        private static string getMaximum(string a, string b, string c)
-        {
-            return a.CompareTo(b) >= 0 && a.CompareTo(c) >= 0 ? a : b.CompareTo(a) >= 0 && b.CompareTo(c) >= 0 ? b : c;
-        }
+       
     }
 }
 
