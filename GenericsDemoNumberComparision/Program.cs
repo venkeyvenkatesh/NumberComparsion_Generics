@@ -3,37 +3,29 @@ using System;
 
 namespace GenericsDemoNumberComparision
 {
-   public class Program 
+    public class Program
     {
         static void Main(string[] args)
         {
 
             Console.WriteLine("Welcome to Generics Demo Program");
 
-            Console.WriteLine("Enter three Integers");
-            int firstInt = Convert.ToInt32(Console.ReadLine());
-            int secondInt= Convert.ToInt32(Console.ReadLine());
-            int thirdInt = Convert.ToInt32(Console.ReadLine());
+
+            int[] intArr = { 10, 200, 30, 60, 598 };
 
 
-            maxGeneric<int> intObj = new maxGeneric<int>(firstInt,secondInt,thirdInt);
+            maxGeneric<int> intObj = new maxGeneric<int>(intArr);
 
-            Console.WriteLine("max of three numbers is : " + intObj.getMaximum());
+            Console.WriteLine("max of given integer numbers is : " + intObj.getMaximum());
 
-            Console.WriteLine("Enter three FLoat values");
-            double firstDouble = Convert.ToDouble(Console.ReadLine());
-            double secondDouble = Convert.ToDouble(Console.ReadLine());
-            double thirdDouble = Convert.ToDouble(Console.ReadLine());
 
-            maxGeneric<double> doubleObj = new maxGeneric<double>(firstDouble, secondDouble, thirdDouble);
+            double[] doubleArr = { 2.4, 6.8, 9.6, 8.9, 7.4 };
+            maxGeneric<double> doubleObj = new maxGeneric<double>(doubleArr);
             Console.WriteLine("max of three numbers is : " + doubleObj.getMaximum());
 
 
-            Console.WriteLine("Enter three strings");
-            string firstString = Console.ReadLine();
-            string secondString = Console.ReadLine();
-            string thirdString = Console.ReadLine();
-            maxGeneric<string> stringObj = new maxGeneric<string>(firstString, secondString, thirdString);
+            string[] stringArr = { "123", "587", "352", "489", "156" };
+            maxGeneric<string> stringObj = new maxGeneric<string>(stringArr);
             Console.WriteLine("Max of three strings is : " + stringObj.getMaximum());
 
 
@@ -41,20 +33,20 @@ namespace GenericsDemoNumberComparision
 
         public class maxGeneric<myData> where myData : IComparable
         {
-           public  myData a,b,c;
-            public maxGeneric(myData a, myData b, myData c)
-                {
-                this.a=a;
-                this.b=b;
-                this.c=c;
-                }
-            public  myData getMaximum()
+            public myData[] arr;
+            public maxGeneric(myData[] arr)
             {
-                return a.CompareTo(b) >= 0 && a.CompareTo(c) >= 0 ? a : b.CompareTo(a) >= 0 && b.CompareTo(c) >= 0 ? b : c;
+                this.arr = arr;
+            }
+            public myData getMaximum()
+            {
 
+              Array.Sort(this.arr);
+
+                return this.arr[this.arr.Length - 1];
             }
         }
-       
+
     }
 }
 
