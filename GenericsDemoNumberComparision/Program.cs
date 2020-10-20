@@ -15,14 +15,20 @@ namespace GenericsDemoNumberComparision
             int firstInt = Convert.ToInt32(Console.ReadLine());
             int secondInt= Convert.ToInt32(Console.ReadLine());
             int thirdInt = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("max of three numbers is :" + getMaximum(firstInt,secondInt,thirdInt));
+            Console.WriteLine("max of three numbers is : " + getMaximum(firstInt,secondInt,thirdInt));
 
             Console.WriteLine("Enter three FLoat values");
             double firstDouble = Convert.ToDouble(Console.ReadLine());
             double secondDouble = Convert.ToDouble(Console.ReadLine());
             double thirdDouble = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("max of three numbers is :" + getMaximum(firstDouble,secondDouble,thirdDouble));
+            Console.WriteLine("max of three numbers is : " + getMaximum(firstDouble,secondDouble,thirdDouble));
 
+
+            Console.WriteLine("Enter three strings");
+            string firstString = Console.ReadLine();
+            string secondString = Console.ReadLine();
+            string thirdString = Console.ReadLine();
+            Console.WriteLine("Max of three strings is : " + getMaximum(firstString,secondString,thirdString));
 
 
         }
@@ -35,6 +41,11 @@ namespace GenericsDemoNumberComparision
         {
             return a.CompareTo(b) >= 0 && a.CompareTo(c) >= 0 ? a : b.CompareTo(a) >= 0 && b.CompareTo(c) >= 0 ? b : c;
 
+        }
+
+        private static string getMaximum(string a, string b, string c)
+        {
+            return a.CompareTo(b) >= 0 && a.CompareTo(c) >= 0 ? a : b.CompareTo(a) >= 0 && b.CompareTo(c) >= 0 ? b : c;
         }
     }
 }
