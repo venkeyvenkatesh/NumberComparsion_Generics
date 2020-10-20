@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GenericsDemoNumberComparision
 {
@@ -16,17 +17,17 @@ namespace GenericsDemoNumberComparision
 
             maxGeneric<int> intObj = new maxGeneric<int>(intArr);
 
-            Console.WriteLine("max of given integer numbers is : " + intObj.getMaximum());
+           intObj.getMaximum();
 
 
             double[] doubleArr = { 2.4, 6.8, 9.6, 8.9, 7.4 };
             maxGeneric<double> doubleObj = new maxGeneric<double>(doubleArr);
-            Console.WriteLine("max of three numbers is : " + doubleObj.getMaximum());
+            doubleObj.getMaximum();
 
 
             string[] stringArr = { "123", "587", "352", "489", "156" };
             maxGeneric<string> stringObj = new maxGeneric<string>(stringArr);
-            Console.WriteLine("Max of three strings is : " + stringObj.getMaximum());
+            stringObj.getMaximum();
 
 
         }
@@ -38,12 +39,17 @@ namespace GenericsDemoNumberComparision
             {
                 this.arr = arr;
             }
-            public myData getMaximum()
+            public void getMaximum()
             {
 
               Array.Sort(this.arr);
+                printMax(this.arr[this.arr.Length - 1]);
+               
+            }
+            public void printMax(myData max)
+            {
 
-                return this.arr[this.arr.Length - 1];
+                Console.WriteLine("Max value among  is "+max);
             }
         }
 
